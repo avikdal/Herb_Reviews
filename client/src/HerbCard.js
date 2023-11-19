@@ -16,13 +16,8 @@ export default function HerbCard({ herbInfo, herbs, setHerbs }) {
     }
 
     function handleUpdatedReviews(updatedReview){
-      // let updatedReviews = reviews.map(review => reviews.id === updatedReview.id ? updatedReview : review)
-      // update state so that updated review shows on herb card
-      // how to manipulate reviewList
-      console.log("updatedReview in handleupdatedReview function", updatedReview.herb.id)
       setSelectedReview(null)
       let herbToUpdate = herbs.find((herb) => herb.id === updatedReview.herb.id)
-      console.log("herbToUpdate.reviews", herbToUpdate.reviews)
       let updatedReviews = herbToUpdate.reviews.map((review) => {
         if(review.id == updatedReview.id){
           return updatedReview
@@ -53,7 +48,6 @@ export default function HerbCard({ herbInfo, herbs, setHerbs }) {
                 body: JSON.stringify(newReview)
             }).then((r) => r.json())
                 .then((data) => {
-                  // console.log("data post fetch", data)
                   let herbToUpdate = herbs.find((herb) => herb.id === id)
                   let updatedReviews = [...herbToUpdate.reviews, data]
                   let updatedHerbs = herbs.map((herb) => {
@@ -68,9 +62,6 @@ export default function HerbCard({ herbInfo, herbs, setHerbs }) {
                   setShowForm(false)
               });
     };
-
-    // add review
-    // if review belongs to user, user should be able to edit & delete review
 
   return (
     <div>

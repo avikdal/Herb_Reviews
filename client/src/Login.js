@@ -60,12 +60,6 @@ export default function Login() {
           />
         </Form.Group>
 
-        {/* <Form.Group>
-        {errors.map((error) => (
-          <div key={error}>{error}</div>
-        ))}
-        </Form.Group> */}
-
         <Form.Group>
             {Array.isArray(errors) && errors.map((error) => (
                 <div key={error}>{error}</div>

@@ -1,9 +1,6 @@
 import React from 'react'
 
 export default function EditReviewForm({ review, handleChangeForm, handleUpdatedReviews }) {
-
-    console.log("review", review)
-
     const { rating, content } = review
 
     function handleSubmit(e){
@@ -16,10 +13,7 @@ export default function EditReviewForm({ review, handleChangeForm, handleUpdated
         body: JSON.stringify(review),
         })
         .then(r => r.json())
-        .then(review => {
-            console.log("new review after patch fetch", review)
-            handleUpdatedReviews(review)
-        })
+        .then(review => handleUpdatedReviews(review))
     }
 
   return (
