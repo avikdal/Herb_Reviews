@@ -28,8 +28,22 @@ function UserProvider({ children }) {
     setUser(user)
   }
 
+  function updateHerbsReviewed(newHerbReview) {
+    // add the new herb from the review to the user.herbs
+    let updatedUser= {...user, herbs: [...user.herbs, newHerbReview.herb]}
+    setUser(updatedUser)
+  }
+
+  function updateDeletedHerbReview(deletedReview){
+    let updatedUser = {...user}
+    let updatedHerbs = updatedUser.herbs.filter((herb) => herb.id != deletedReview.herb.id)
+    let realUpdatedUser = {...user, herbs: updatedHerbs}
+    setUser(realUpdatedUser)
+  }
+  
+
   return (
-   <UserContext.Provider value={{ user, login, logout, signup }}>
+   <UserContext.Provider value={{ user, login, logout, signup, updateHerbsReviewed, updateDeletedHerbReview }}>
     {children}
    </UserContext.Provider>
   )

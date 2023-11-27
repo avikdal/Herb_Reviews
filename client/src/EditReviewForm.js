@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function EditReviewForm({ review, handleChangeForm, handleUpdatedReviews }) {
     const { rating, content } = review
+    const [errors, setErrors] = useState([]);
+
 
     function handleSubmit(e){
         e.preventDefault()
@@ -12,8 +14,13 @@ export default function EditReviewForm({ review, handleChangeForm, handleUpdated
         },
         body: JSON.stringify(review),
         })
-        .then(r => r.json())
-        .then(review => handleUpdatedReviews(review))
+        .then(r => {
+          if (r.ok){
+          r.json().then(review => handleUpdatedReviews(review))
+          } else {
+            r.json().then((error) => setErrors(error.errors));
+          }
+    })
     }
 
   return (
@@ -21,11 +28,18 @@ export default function EditReviewForm({ review, handleChangeForm, handleUpdated
       <h1>Edit this Review</h1>
       <form className="entry-form" onSubmit={handleSubmit}>
             <input
-                type="text"
+                type="number"
                 name="rating"
                 placeholder="rating"
                 value={rating}
-                onChange={(e) => handleChangeForm(e.target.name, e.target.value)}
+                onChange={(e) => {
+                  const enteredRating = parseInt(e.target.value, 10);
+                  if (enteredRating >= 1 && enteredRating <= 5) {
+                  handleChangeForm(e.target.name, e.target.value)
+                } else {
+                  console.error('Invalid rating. Please enter a rating between 1 and 5.');
+                }
+                }}
             />
             <input
                 type="text"
@@ -34,6 +48,9 @@ export default function EditReviewForm({ review, handleChangeForm, handleUpdated
                 value={content}
                 onChange={(e) => handleChangeForm(e.target.name, e.target.value)}
             />
+            <div>
+              {Array.isArray(errors) && errors.map((error) => <div key={error}>{error}</div>)}
+            </div>
             <button className="button" type="submit">Update Review</button>
       </form>
     </div>

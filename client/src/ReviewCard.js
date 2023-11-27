@@ -3,7 +3,7 @@ import { UserContext } from './context/user';
 import Card from 'react-bootstrap/Card';
 import EditReviewForm from './EditReviewForm';
 
-export default function ReviewCard({ reviewInfo, selectedReview, setSelectedReview, handleUpdatedReviews }) {
+export default function ReviewCard({ reviewInfo, selectedReview, setSelectedReview, handleUpdatedReviews, handleReviewDelete }) {
   const { user } = useContext(UserContext);
   const { rating, content, id } = reviewInfo;
 
@@ -18,6 +18,10 @@ export default function ReviewCard({ reviewInfo, selectedReview, setSelectedRevi
     });
   }
 
+  function handleDelete(){
+    handleReviewDelete(reviewInfo)
+  }
+
   return (
     <Card style={{ width: '18rem', border: '2px solid' }}>
       <Card.Body>
@@ -25,7 +29,10 @@ export default function ReviewCard({ reviewInfo, selectedReview, setSelectedRevi
         <Card.Subtitle className="mb-2 text-muted">{reviewInfo.user.username}</Card.Subtitle>
         <Card.Text> "{content}" </Card.Text>
         {user && user.username === reviewInfo.user.username && (
-          <button onClick={handleClick}>Edit Review</button>
+          <>
+          <button onClick={handleClick}>Edit Review</button>{' '}
+          <button onClick={handleDelete}>Delete Review</button>
+          </>
         )}
         {selectedReview && selectedReview.id === id && (
           <EditReviewForm review={selectedReview} handleChangeForm={handleChangeForm} handleUpdatedReviews={handleUpdatedReviews} />
