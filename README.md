@@ -2,8 +2,7 @@
 
 Herbs_Review is a web application built using Ruby on Rails as the backend framework, ActiveRecord as the database ORM, and React for the frontend. The application focuses on herb reviews and features user authentication with login capabilities.
 
-![herb review walthrough gif]
-(https://www.canva.com/design/DAF1ZPBI40M/watch)
+[See a walkthrough here](https://www.canva.com/design/DAF1ZPBI40M/watch)
 
 ## Features
 
