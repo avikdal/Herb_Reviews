@@ -34,8 +34,6 @@ export default function NewHerbForm({ updateHerbs }) {
       .then(r => {
         if (r.ok) {
             r.json().then(newHerb => {
-                // console.log("new herb", newHerb)
-                // console.log("type of prop updateHerbs",typeof updateHerbs);
                 updateHerbs(newHerb);
                 // Redirect to the herbs list after successful creation
                 navigate('/herbs');
@@ -45,7 +43,6 @@ export default function NewHerbForm({ updateHerbs }) {
         }
       })
       .catch(error => {
-        console.error('Error creating herb:', error);
         setError('Error creating herb. Please try again.'); // Set an error message
       });
   };

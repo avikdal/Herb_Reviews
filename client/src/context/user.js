@@ -35,8 +35,8 @@ function UserProvider({ children }) {
   }
 
   function updateDeletedHerbReview(deletedReview){
-    let updatedUser = {...user}
-    let updatedHerbs = updatedUser.herbs.filter((herb) => herb.id != deletedReview.herb.id)
+    let userCopy = {...user}
+    let updatedHerbs = userCopy.herbs.filter((herb) => herb.id != deletedReview.herb.id)
     let realUpdatedUser = {...user, herbs: updatedHerbs}
     setUser(realUpdatedUser)
   }

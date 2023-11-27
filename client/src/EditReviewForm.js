@@ -36,9 +36,7 @@ export default function EditReviewForm({ review, handleChangeForm, handleUpdated
                   const enteredRating = parseInt(e.target.value, 10);
                   if (enteredRating >= 1 && enteredRating <= 5) {
                   handleChangeForm(e.target.name, e.target.value)
-                } else {
-                  console.error('Invalid rating. Please enter a rating between 1 and 5.');
-                }
+                } 
                 }}
             />
             <input

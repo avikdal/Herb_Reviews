@@ -99,10 +99,6 @@ export default function HerbCard({ herbInfo, herbs, setHerbs }) {
                     if (enteredRating >= 1 && enteredRating <= 5) {
                         setNewReview({ ...newReview, rating: enteredRating });
                     }
-                    // } else {
-                    //     console.error('Invalid rating. Please enter a rating between 1 and 5.');
-                    //     setErrors(['Invalid rating. Please enter a rating between 1 and 5.'])
-                    // }
                 }}
                 />
               </div>

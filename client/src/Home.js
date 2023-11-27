@@ -6,26 +6,6 @@ import Signup from './Signup';
 export default function Home() {
   const [showLogin, setShowLogin] = useState(true);
   const { user } = useContext(UserContext)
-  // const [reviews, setReviews] = useState([]);
-
-  // useEffect(() => {
-  //   // Set the initial reviews when the component mounts
-  //   // console.log("user in useEffect", user);
-  //   if (user && user.herbs) {
-  //     // console.log("in useEffect", user.herbs)
-  //     setHerbsReviewed(user.herbs);
-  //   }
-  // }, [user]);
-
-  // const handleNewReview = (newReview) => {
-  //   // Update the state to include the new review
-  //   setReviews((prevReviews) => [...prevReviews, newReview]);
-  // };
-
-  // console.log("herbsReviewed in home ", herbsReviewed)
-
-  // console.log("user herbs", user.herbs)
-  // console.log("reviews", reviews)
 
   if(!user || user.error ){
 

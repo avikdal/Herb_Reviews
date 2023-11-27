@@ -16,10 +16,7 @@ function App() {
   useEffect(() => {
     fetch('/herbs')
       .then((r) => r.json())
-      .then((herbData) => {
-        // console.log("herbData",herbData)
-        setHerbs(herbData)
-      });
+      .then((herbData) => setHerbs(herbData));
   }, []);
 
 
