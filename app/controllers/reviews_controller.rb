@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
-        before_action :set_review, only: [:show, :update, :destroy]
-      
+        before_action :set_review, only: [:update, :destroy]
+        # skip_before_action :authorize, only: :rating_filter
+
         # GET /reviews
         def index
           @reviews = Review.all
@@ -36,11 +37,10 @@ class ReviewsController < ApplicationController
         private
       
         def set_review
-          @review = Review.find(params[:id])
+          @review = @current_user.reviews.find(params[:id])
         end
       
         def review_params
-          params.permit(:rating, :content, :user_id, :herb_id)
+          params.permit(:rating, :content, :herb_id)
         end
 end
-

@@ -7,6 +7,7 @@ export default function EditReviewForm({ review, handleChangeForm, handleUpdated
 
     function handleSubmit(e){
         e.preventDefault()
+        console.log(review)
         fetch(`/reviews/${review.id}`, {
         method: "PATCH", 
         headers: {
